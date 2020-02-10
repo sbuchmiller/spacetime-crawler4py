@@ -89,7 +89,7 @@ class Scrape():
                 return False
 
             if(re.match(
-                r".*ngs\.ics\.uci\.edu.*$"
+                r".*wics\.ics\.uci\.edu.*$"
                 ,parsed.netloc.lower() )):
                 if (len(parsed.geturl()) <= 200):  # any links bigger than 200 will be discarded
                     return True
