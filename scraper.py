@@ -12,6 +12,7 @@ class Scrape():
     def __init__(self):
         self.simhashes = SimhashIndex([])
         self.link = 1
+        self.sim_ct = 0
 
     def scraper(self,url:str, resp: utils.response.Response) -> list:
         links = self.extract_next_links(url,resp)
@@ -41,6 +42,8 @@ class Scrape():
 
             if len(self.simhashes.get_near_dups(simh)) != 0:
                 print("triggered simhash: " + url)
+                self.sim_ct += 1
+                print("simhash triggered: " + str(self.sim_ct))
                 return []
             else:
                 for link in soup.findAll('a'):
