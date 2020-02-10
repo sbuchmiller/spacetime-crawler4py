@@ -40,6 +40,7 @@ class Scrape():
             simh = Simhash(output)
 
             if len(self.simhashes.get_near_dups(simh)) != 0:
+                print("triggered simhash: " + url)
                 return []
             else:
                 for link in soup.findAll('a'):
