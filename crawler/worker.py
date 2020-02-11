@@ -7,30 +7,33 @@ import time
 
 
 class Worker(Thread):
-    def __init__(self, worker_id, config, frontier, id_lock, add_lock):
+    def __init__(self, worker_id, config, frontier, id_lock, add_lock, url_lock):
         self.logger = get_logger(f"Worker-{worker_id}", "Worker")
         self.config = config
         self.frontier = frontier
         self.s = Scrape()
-        self.frontier_get_id_lock = id_lock
+        self.get_id_lock = id_lock
         self.add_lock = add_lock
-        self.frontier_get_id_lock.acquire()
+        self.get_url_lock = url_lock
+        self.get_id_lock.acquire()
         self.domain = self.frontier.get_domain()
-        self.frontier_get_id_lock.release()
+        self.get_id_lock.release()
         super().__init__(daemon=True)
         
     def run(self):
         while True:
+            self.get_url_lock.acquire()
             tbd_url = self.frontier.get_tbd_url(self.domain)
+            self.get_url_lock.release()
             if not tbd_url:
                 if self.frontier.stop_crawl():
                     self.logger.info("Frontier is empty. Stopping Crawler.")
                     break
                 if self.frontier.has_free_domain():
-                    self.frontier_get_id_lock.acquire()
+                    self.get_id_lock.acquire()
                     self.frontier.release_domain(self.domain)
                     self.domain = self.frontier.get_domain()
-                    self.frontier_get_id_lock.release()
+                    self.get_id_lock.release()
                 else:
                     if self.domain != "FREE":
                         self.frontier.release_domain(self.domain)
