@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83a47216-b119-4beb-bc30-7e9d5052da47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/crawler/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawler/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/worker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawler/frontier.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawler/frontier.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -139,7 +138,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crawler/worker.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -152,14 +151,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crawler/frontier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="53" column="38" lean-forward="true" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+            <state relative-caret-position="391">
+              <caret line="101" column="56" lean-forward="true" selection-start-line="101" selection-start-column="56" selection-end-line="101" selection-end-column="56" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1581454188195" expanded="true" signature="1722:1731" ph="..." />
+                <marker date="1581455192798" expanded="true" signature="1722:1731" ph="..." />
               </folding>
             </state>
           </provider>
@@ -191,9 +190,9 @@
         <option value="$PROJECT_DIR$/scraper.py" />
         <option value="$PROJECT_DIR$/launch.py" />
         <option value="$PROJECT_DIR$/config.ini" />
-        <option value="$PROJECT_DIR$/crawler/frontier.py" />
         <option value="$PROJECT_DIR$/crawler/__init__.py" />
         <option value="$PROJECT_DIR$/crawler/worker.py" />
+        <option value="$PROJECT_DIR$/crawler/frontier.py" />
       </list>
     </option>
   </component>
@@ -466,17 +465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawler/frontier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="53" column="38" lean-forward="true" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1581454188195" expanded="true" signature="1722:1731" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crawler/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -494,6 +482,17 @@
           <folding>
             <element signature="e#0#28#0" expanded="true" />
             <marker date="1581454727878" expanded="true" signature="683:692" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawler/frontier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="101" column="56" lean-forward="true" selection-start-line="101" selection-start-column="56" selection-end-line="101" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1581455192798" expanded="true" signature="1722:1731" ph="..." />
           </folding>
         </state>
       </provider>
