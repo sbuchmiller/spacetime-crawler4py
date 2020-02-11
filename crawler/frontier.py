@@ -13,7 +13,7 @@ class Frontier(object):
     def __init__(self, config, restart):
         self.logger = get_logger("FRONTIER")
         self.config = config
-        self.to_be_downloaded = defaultdict(set())
+        self.to_be_downloaded = defaultdict(set)
         self.s = Scrape()
         
         if not os.path.exists(self.config.save_file) and not restart:
