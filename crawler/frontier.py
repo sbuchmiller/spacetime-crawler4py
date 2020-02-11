@@ -54,7 +54,7 @@ class Frontier(object):
             f"total urls discovered.")
 
     def get_tbd_url(self,id):
-        print("TBD: ",self.to_be_downloaded.keys())
+        print("TBD: ",self.to_be_downloaded)
         print("TAKEN: ",self.taken_domains)
         print("OPEN", self.open_domains)
         if id == "FREE":
