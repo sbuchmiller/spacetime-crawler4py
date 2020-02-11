@@ -7,12 +7,13 @@ import time
 
 
 class Worker(Thread):
-    def __init__(self, worker_id, config, frontier, lock):
+    def __init__(self, worker_id, config, frontier, id_lock, add_lock):
         self.logger = get_logger(f"Worker-{worker_id}", "Worker")
         self.config = config
         self.frontier = frontier
         self.s = Scrape()
-        self.frontier_get_id_lock = lock
+        self.frontier_get_id_lock = id_lock
+        self.add_lock = add_lock
         self.frontier_get_id_lock.acquire()
         self.domain = self.frontier.get_domain()
         self.frontier_get_id_lock.release()
@@ -42,7 +43,9 @@ class Worker(Thread):
                     f"Downloaded {tbd_url}, status <{resp.status}>, "
                     f"using cache {self.config.cache_server}.")
                 scraped_urls = self.s.scraper(tbd_url, resp)
+                self.add_lock.acquire()
                 for scraped_url in scraped_urls:
                     self.frontier.add_url(scraped_url)
                 self.frontier.mark_url_complete(tbd_url)
+                self.add_lock.release()
             time.sleep(self.config.time_delay)

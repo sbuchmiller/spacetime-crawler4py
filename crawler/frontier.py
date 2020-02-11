@@ -92,7 +92,7 @@ class Frontier(object):
         key = "FREE"
         if (re.match(r".*\.ics\.uci\.edu\/?.*$", location)): #for this project I hardcoded the "domains" however if this was a real crawler I would
             self.to_be_downloaded["ics"].add(url)           #use the domain from the parser to make this expandable to more domains
-            key = "ics"
+            key = "ics"                                     #for safety we only use these 5 since they are the ones in the project spec
         elif (re.match(r".* \.cs\.uci\.edu\/ ?.*$",location)):
             self.to_be_downloaded["cs"].add(url)
             key = "cs"
