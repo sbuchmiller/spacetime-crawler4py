@@ -54,6 +54,9 @@ class Frontier(object):
             f"total urls discovered.")
 
     def get_tbd_url(self,id):
+        print("TBD: ",self.to_be_downloaded)
+        print("TAKEN: ",self.taken_domains)
+        print("OPEN", self.open_domains)
         if id == "FREE":
             return None
         if id in self.to_be_downloaded: #uses the id of the thread to give it a url from the set associated with each key which represents a

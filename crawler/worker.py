@@ -34,6 +34,7 @@ class Worker(Thread):
                     if self.domain != "FREE":
                         self.frontier.release_domain(self.domain)
                         self.domain = "FREE"
+                    self.logger.info("sleeping, cant find domain")
                     time.sleep(3)
             else:
                 resp = download(tbd_url, self.config, self.logger)
