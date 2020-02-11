@@ -15,7 +15,8 @@ class Frontier(object):
         self.config = config
         self.to_be_downloaded = defaultdict(set)
         self.s = Scrape()
-        
+        self.open_domains = set() #keeps track of domains with values in them that arent being used by a thread
+        self.taken_domains = set() #keeps track of domains being used by a thread
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
             self.logger.info(
@@ -38,8 +39,6 @@ class Frontier(object):
                 for url in self.config.seed_urls:
                     self.add_url(url)
 
-        self.open_domains = set(self.to_be_downloaded.keys()) #keeps track of domains with values in them that arent being used by a thread
-        self.taken_domains = set()  #keeps track of domains being used by a thread
 
 
     def _parse_save_file(self):
