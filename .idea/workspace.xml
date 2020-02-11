@@ -154,11 +154,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crawler/frontier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="101" column="56" lean-forward="true" selection-start-line="101" selection-start-column="56" selection-end-line="101" selection-end-column="56" />
+            <state relative-caret-position="181">
+              <caret line="90" column="40" lean-forward="true" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1581455192798" expanded="true" signature="1722:1731" ph="..." />
+                <marker date="1581455502852" expanded="true" signature="1722:1731" ph="..." />
               </folding>
             </state>
           </provider>
@@ -488,11 +488,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crawler/frontier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="101" column="56" lean-forward="true" selection-start-line="101" selection-start-column="56" selection-end-line="101" selection-end-column="56" />
+        <state relative-caret-position="181">
+          <caret line="90" column="40" lean-forward="true" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1581455192798" expanded="true" signature="1722:1731" ph="..." />
+            <marker date="1581455502852" expanded="true" signature="1722:1731" ph="..." />
           </folding>
         </state>
       </provider>
