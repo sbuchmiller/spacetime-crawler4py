@@ -89,10 +89,10 @@ class Frontier(object):
     def add_to_tbd(self,url):
         parsed = urlparse(url)
         location = parsed.netloc.lower()
-        if ("ics.uci.edu." in location): #for this project I hardcoded the "domains" however if this was a real crawler I would
+        if ("ics.uci.edu" in location): #for this project I hardcoded the "domains" however if this was a real crawler I would
             self.to_be_downloaded["ics"].add(url)           #use the domain from the parser to make this expandable to more domains
             key = "ics"                                     #for safety we only use these 5 since they are the ones in the project spec
-        elif ("cs.uci.edu." in location):
+        elif ("cs.uci.edu" in location):
             self.to_be_downloaded["cs"].add(url)
             key = "cs"
         elif ("informatics.uci.edu" in location):
