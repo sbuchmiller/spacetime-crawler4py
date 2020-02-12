@@ -11,7 +11,7 @@ class Worker(Thread):
         self.logger = get_logger(f"Worker-{worker_id}", "Worker")
         self.config = config
         self.frontier = frontier
-        self.s = Scrape(self)
+        self.s = Scrape(config, self)
         self.get_id_lock = id_lock
         self.add_lock = add_lock
         self.get_url_lock = url_lock

@@ -15,7 +15,7 @@ class Frontier(object):
         self.logger = get_logger("FRONTIER")
         self.config = config
         self.to_be_downloaded = defaultdict(set)
-        self.s = Scrape()
+        self.s = Scrape(config)
         self.open_domains = set() #keeps track of domains with values in them that aren't being used by a thread
         self.taken_domains = set() #keeps track of domains being used by a thread
         self.simhashes = simhash.SimhashIndex([])

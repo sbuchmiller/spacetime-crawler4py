@@ -3,13 +3,20 @@ from urllib.parse import urlparse
 import utils.response
 from bs4 import BeautifulSoup
 from urllib.parse import urldefrag
-import urllib.robotparser
 from simhash import Simhash, SimhashIndex
+import requests
+from utils.response import Response
+import cbor
+import time
+from collections import defaultdict 
 
 
 class Scrape():
-
-    def __init__(self,worker = None):
+    def __init__(self,config, worker = None):
+        self.config = config
+        self.host,self.port = config.cache_server
+        #self.robots = list of banned paths
+        self.robots = {}
         self.simhashes = SimhashIndex([])
         self.link = 1
         self.worker = worker
@@ -91,19 +98,66 @@ class Scrape():
                 + r"|today\.uci\.edu\/department\/information_computer_sciences\/?.*$"
                 ,parsed.netloc.lower() )):
                 if (len(parsed.geturl()) <= 200):  # any links bigger than 200 will be discarded
-                    return True
-                    # parser = urllib.robotparser.RobotFileParser()
-                    # parser.set_url(url)
-                    # try:
-                    #     parser.read()
-                    # except:
-                    #     return False;
-                    # if(parser.can_fetch("IR W20 94612036 73401826 79557971",url)):
-                    #     return True
-                        
+                    #code from utils.download to download and parse the robot
+                    #assumes that the URL is a new URL
+                    if(not f"{parsed.netloc}" in self.robots.keys()):
+                        print("New Robot", url)
+                        resp = requests.get(
+                                f"http://{self.host}:{self.port}/",
+                                params=[("q", f"{parsed.scheme}://{parsed.netloc}/robots.txt"), ("u", f"{self.config.user_agent}")])
+                        #might have to check what type of respons we're getting.
+
+                        if resp:
+                            x = Response(cbor.loads(resp.content))
+                            try:
+                                user_perm = self.robot_parser(x.raw_response.content.decode())
+                                print(user_perm)
+                                #adding the banned paths to the dictionary.
+                                self.robots[f"{parsed.netloc}"] = user_perm
+                            except:
+                                print("Dead Link")
+                                return True
+                        else:
+                            print("No Robot Response")
+                        time.sleep(self.config.time_delay)
+                    #Checks if the path is one we're allowed in crawl
+                    if (f"/{parsed.path}/" in self.robots[f"{parsed.netloc}"]):
+                        print("Check Robot: invalid", url)
+                        return False
+                    else:
+                        #print("Check Robot: Valid", url)
+                        return True
+                
                 return False
 
 
         except TypeError:
             print ("TypeError for ", parsed)
             raise
+            
+    #Updates self.robot with domains and disallows.
+    #the values of the list starts with /
+    def robot_parser(self,robot:str) -> list:
+        lines = robot.splitlines()
+        curr_agent = self.config.user_agent
+        #temporary agent - permission
+        user_perm = defaultdict(list)
+        for i in range(len(lines)):
+            words = lines[i].split()
+            if(len(words) != 0):
+                if(words[0].lower() == "user-agent:"):
+                    curr_agent = words[1] 
+                elif(words[0].lower() == "disallow:"):
+                    user_perm[curr_agent].append(words[1])
+                # elif(words[0].lower() == "allow:"):
+                #     user_perm[curr_agent].append("+" + words[1])
+        if (self.config.user_agent in user_perm.keys()):
+            return user-perm[self.config.user_agent]
+        else:
+            return user_perm["*"]
+        
+
+
+        #looking for user agents
+        
+
