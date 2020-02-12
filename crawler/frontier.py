@@ -146,7 +146,7 @@ class Frontier(object):
             self.taken_domains.remove(domain)
 
     def check_simhash(self,simh):
-        return len(self.simhashes.get_near_dups(simh)) != 0
+        return len(self.simhashes.get_near_dups(simh)) == 0
 
     def add_simhash(self, link,simhash):
         self.simhashes.add(link,simhash)
