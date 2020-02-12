@@ -40,7 +40,7 @@ class Worker(Thread):
                         self.frontier.release_domain(self.domain)
                         self.domain = "FREE"
                     self.logger.info("sleeping, cant find domain")
-                    time.sleep(3)
+                    time.sleep(6) #sleeps the thread if theres no more domains with urls (they check again after the delay)
             else:
                 resp = download(tbd_url, self.config, self.logger)
                 self.logger.info(
