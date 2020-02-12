@@ -9,14 +9,16 @@ from utils import get_logger, get_urlhash, normalize
 from scraper import Scrape
 import queue
 from collections import defaultdict
+import simhash
 class Frontier(object):
     def __init__(self, config, restart):
         self.logger = get_logger("FRONTIER")
         self.config = config
         self.to_be_downloaded = defaultdict(set)
         self.s = Scrape()
-        self.open_domains = set() #keeps track of domains with values in them that arent being used by a thread
+        self.open_domains = set() #keeps track of domains with values in them that aren't being used by a thread
         self.taken_domains = set() #keeps track of domains being used by a thread
+        self.simhashes = simhash.SimhashIndex([])
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
             self.logger.info(
@@ -142,4 +144,10 @@ class Frontier(object):
     def release_domain(self, domain): #for worker threads to return a domain they no longer need
         if domain in self.taken_domains:
             self.taken_domains.remove(domain)
+
+    def check_simhash(self,simh):
+        return len(self.simhashes.get_near_dups(simh)) != 0
+
+    def add_simhash(self, link,simhash):
+        self.simhashes.add(link,simhash)
 

@@ -11,6 +11,7 @@ class Crawler(object):
         self.get_id_lock = Lock()
         self.add_lock = Lock()
         self.get_url_lock = Lock()
+        self.sim_lock = Lock()
         self.worker_factory = worker_factory
 
     def start_async(self):

@@ -7,14 +7,15 @@ import time
 
 
 class Worker(Thread):
-    def __init__(self, worker_id, config, frontier, id_lock, add_lock, url_lock):
+    def __init__(self, worker_id, config, frontier, id_lock, add_lock, url_lock, sim_lock):
         self.logger = get_logger(f"Worker-{worker_id}", "Worker")
         self.config = config
         self.frontier = frontier
-        self.s = Scrape()
+        self.s = Scrape(self)
         self.get_id_lock = id_lock
         self.add_lock = add_lock
         self.get_url_lock = url_lock
+        self.sim_lock = sim_lock
         self.get_id_lock.acquire()
         self.domain = self.frontier.get_domain()
         self.get_id_lock.release()
@@ -52,3 +53,15 @@ class Worker(Thread):
                 self.frontier.mark_url_complete(tbd_url)
                 self.add_lock.release()
             time.sleep(self.config.time_delay)
+
+    def request_simhash(self,simhash):
+        self.sim_lock.acquire()
+        ret = self.frontier.check_simhash(simhash)
+        self.sim_lock.release()
+        return ret
+
+
+    def add_simhash(self,link,simhash):
+        self.sim_lock.acquire()
+        self.frontier.add_simhash(link,simhash)
+        self.sim_lock.release()

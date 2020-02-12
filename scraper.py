@@ -9,9 +9,10 @@ from simhash import Simhash, SimhashIndex
 
 class Scrape():
 
-    def __init__(self):
+    def __init__(self,worker = None):
         self.simhashes = SimhashIndex([])
         self.link = 1
+        self.worker = worker
 
     def scraper(self,url:str, resp: utils.response.Response) -> list:
         links = self.extract_next_links(url,resp)
@@ -39,7 +40,7 @@ class Scrape():
 
             simh = Simhash(output)
 
-            if len(self.simhashes.get_near_dups(simh)) != 0:
+            if not self.worker.check_simhash(simh):
                 return []
             else:
                 for link in soup.findAll('a'):
@@ -47,8 +48,9 @@ class Scrape():
                         # remove the fragment here
                        unfragmented = urldefrag(link.get('href'))
                        links.add(unfragmented.url)
-            self.simhashes.add(self.link,simh)
-            self.link += 1
+            if self.worker != None:
+                self.worker.add_simhash(self.link,simh)
+                self.link += 1
             return list(links)
         return list(links)
         
