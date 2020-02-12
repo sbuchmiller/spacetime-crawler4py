@@ -116,6 +116,7 @@ class Scrape():
                                 self.robots[f"{parsed.netloc}"] = user_perm
                             except:
                                 print("Dead Link")
+                                time.sleep(self.config.time_delay)
                                 return True
                         else:
                             print("No Robot Response")
