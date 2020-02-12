@@ -54,7 +54,7 @@ class Worker(Thread):
                 self.add_lock.release()
             time.sleep(self.config.time_delay)
 
-    def request_simhash(self,simhash):
+    def check_simhash(self,simhash):
         self.sim_lock.acquire()
         ret = self.frontier.check_simhash(simhash)
         self.sim_lock.release()
