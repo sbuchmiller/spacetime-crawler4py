@@ -11,6 +11,13 @@ import time
 from collections import defaultdict 
 
 
+import urllib.request
+from urllib.error import HTTPError, URLError
+import socket
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
+
 class Scrape():
     def __init__(self,config, worker = None):
         self.config = config
@@ -97,6 +104,14 @@ class Scrape():
                 r".*\.ics\.uci\.edu\/?.*|.*\.cs\.uci\.edu\/?.*|.*\.informatics\.uci\.edu\/?.*|.*\.stat\.uci\.edu\/?.*"
                 + r"|today\.uci\.edu\/department\/information_computer_sciences\/?.*$"
                 ,parsed.netloc.lower() )):
+
+                # when it is taking too long (over 10 seconds) to crawl the URL, the cralwer will not crawl
+                try:
+                    response = urllib.request.urlopen(url, timeout=10) # set the timeout value to 10 seconds
+                except (HTTPError, URLError) as error:
+                    print('{} is not retrieved because it\'s taking too long'.format(url))
+                    return False
+
                 if (len(parsed.geturl()) <= 200):  # any links bigger than 200 will be discarded
                     #code from utils.download to download and parse the robot
                     #assumes that the URL is a new URL
