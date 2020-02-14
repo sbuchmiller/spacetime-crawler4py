@@ -10,13 +10,11 @@ import cbor
 import time
 from collections import defaultdict 
 
-
 import urllib.request
 from urllib.error import HTTPError, URLError
 import socket
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
-
 
 class Scrape():
     def __init__(self,config, worker = None):
@@ -105,14 +103,19 @@ class Scrape():
                 + r"|today\.uci\.edu\/department\/information_computer_sciences\/?.*$"
                 ,parsed.netloc.lower() )):
 
-                # when it is taking too long (over 10 seconds) to crawl the URL, the cralwer will not crawl
-                try:
-                    response = urllib.request.urlopen(url, timeout=10) # set the timeout value to 10 seconds
-                except (HTTPError, URLError) as error:
-                    print('{} is not retrieved because it\'s taking too long'.format(url))
-                    return False
+            	
+
 
                 if (len(parsed.geturl()) <= 200):  # any links bigger than 200 will be discarded
+
+                    # when it is taking too long (over 10 seconds) to crawl the URL, the cralwer will not crawl
+                    try:
+                        # set the timeout value to 10 seconds
+                        response = urllib.request.urlopen(url, timeout=10)
+                    except (HTTPError, URLError) as error:
+                        print('{} is not retrieved because it\'s taking too long'.format(url))
+                        return False
+
                     #code from utils.download to download and parse the robot
                     #assumes that the URL is a new URL
                     if(not f"{parsed.netloc}" in self.robots.keys()):
@@ -168,7 +171,7 @@ class Scrape():
                 # elif(words[0].lower() == "allow:"):
                 #     user_perm[curr_agent].append("+" + words[1])
         if (self.config.user_agent in user_perm.keys()):
-            return user-perm[self.config.user_agent]
+            return user_perm[self.config.user_agent]
         else:
             return user_perm["*"]
         
