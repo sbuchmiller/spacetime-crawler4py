@@ -105,17 +105,17 @@ class Scrape():
 
             	
 
-                '''
+                
                 if (len(parsed.geturl()) <= 200):  # any links bigger than 200 will be discarded
-
-                    # when it is taking too long (over 10 seconds) to crawl the URL, the cralwer will not crawl
-                    try:
-                        # set the timeout value to 10 seconds
-                        response = urllib.request.urlopen(url, timeout=10)
-                    except (HTTPError, URLError) as error:
-                        print('{} is not retrieved because it\'s taking too long'.format(url))
-                        return False
-                '''
+                    '''
+                        # when it is taking too long (over 10 seconds) to crawl the URL, the cralwer will not crawl
+                        try:
+                            # set the timeout value to 10 seconds
+                            response = urllib.request.urlopen(url, timeout=10)
+                        except (HTTPError, URLError) as error:
+                            print('{} is not retrieved because it\'s taking too long'.format(url))
+                            return False
+                    '''
 
                     #code from utils.download to download and parse the robot
                     #assumes that the URL is a new URL
