@@ -149,5 +149,5 @@ class Frontier(object):
             print(url,count)
 
     def print_counter(self):
-        print(self.url_word_count)
+        print(self.url_word_count.most_common(60))
 
