@@ -194,7 +194,7 @@ class Scrape():
         for x in text.split():
             x = x.rstrip(punctuation).lower()
             if(x not in self.stopWords):
-                Counter[x] += 1
+                self.wordCounter[x] += 1
             words += 1
         if (words > self.maxWords):
             self.maxWords = tuple(url, words)
