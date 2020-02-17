@@ -8,7 +8,7 @@ def download(url, config, logger=None):
     host, port = config.cache_server
     resp = requests.get(
         f"http://{host}:{port}/",
-        params=[("q", f"{url}"), ("u", f"{config.user_agent}")], timeout=10)
+        params=[("q", f"{url}"), ("u", f"{config.user_agent}")], timeout = 5)
     if resp:
         return Response(cbor.loads(resp.content))
     logger.error(f"Spacetime Response error {resp} with url {url}.")

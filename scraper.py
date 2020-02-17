@@ -123,7 +123,7 @@ class Scrape():
                         #print("New Robot", url)
                         resp = requests.get(
                                 f"http://{self.host}:{self.port}/",
-                                params=[("q", f"{parsed.scheme}://{parsed.netloc}/robots.txt"), ("u", f"{self.config.user_agent}")])
+                                params=[("q", f"{parsed.scheme}://{parsed.netloc}/robots.txt"), ("u", f"{self.config.user_agent}")], timeout = 5)
                         #might have to check what type of respons we're getting.
 
                         if resp:
