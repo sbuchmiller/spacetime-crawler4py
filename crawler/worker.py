@@ -35,6 +35,7 @@ class Worker(Thread):
                     self.url_word_count += self.s.getWordCounter()   #gets the info for total words from scraper
                     self.print_results_lock.acquire()
                     self.frontier.add_to_counter(self.url_word_count) #merges all the word counts into frontier counter
+                    self.frontier.combine_max_urls(self.s.getWords())
                     self.print_results_lock.release()
                     break
                 if self.frontier.has_free_domain():

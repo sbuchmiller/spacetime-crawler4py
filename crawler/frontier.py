@@ -21,6 +21,7 @@ class Frontier(object):
         self.simhashes = simhash.SimhashIndex([])
         self.subdomains = defaultdict(int)
         self.url_word_count = Counter()
+        self.max_url = (" ", -1)
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
             self.logger.info(
@@ -143,11 +144,20 @@ class Frontier(object):
     def add_to_counter(self,url_word):
         self.url_word_count += url_word
 
+    def combine_max_urls(self,url): #finds the biggest url out of the biggest each worker found
+        if self.max_url[1] < url[1]:
+            self.max_url = url
+
+    def print_max_url(self):
+        print("\n\nMAX_URL_LENGTH:")
+        print(self.max_url)
+
     def print_subdomains(self): #prints the dictionary of subdomains in alphabetical order
         print("\n\nPRINTING SUBDOMAINS:")
         for url, count in sorted(self.subdomains.items(),key=lambda y: y[0]):
             print(url,count)
 
     def print_counter(self):
+        print("\n\nMOST FREQUENT WORD COUNTER:")
         print(self.url_word_count.most_common(60))
 
