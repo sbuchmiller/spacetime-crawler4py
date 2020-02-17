@@ -67,13 +67,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="ini" value="3" />
-          <entry key="py" value="8108" />
+          <entry key="py" value="8515" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Ini" value="3" />
-          <entry key="Python" value="8107" />
+          <entry key="Python" value="8514" />
           <entry key="RegExp" value="1" />
         </counts>
       </usages-collector>
@@ -111,11 +111,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crawler/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+            <state relative-caret-position="408">
+              <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -126,44 +126,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crawler/worker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="36" column="119" selection-start-line="36" selection-start-column="119" selection-end-line="36" selection-end-column="119" />
+            <state relative-caret-position="402">
+              <caret line="37" column="69" selection-start-line="37" selection-start-column="69" selection-end-line="37" selection-end-column="69" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1581904055855" expanded="true" signature="2925:3066" ph="..." />
+                <marker date="1581905610370" expanded="true" signature="2995:3136" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crawler/frontier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="151" column="34" lean-forward="true" selection-start-line="151" selection-start-column="34" selection-end-line="151" selection-end-column="34" />
+            <state relative-caret-position="555">
+              <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1581903637296" expanded="true" signature="1886:1895" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="3212:3221" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="5859:5925" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6107:6153" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6182" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6185" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6188" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6191" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6193" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6194" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6196" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6199" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6202" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6205" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6210" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6213" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6217" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6218" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6236" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6238" ph="..." />
-                <marker date="1581903637296" expanded="true" signature="6180:6239" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="1919:1928" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="3245:3254" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="5892:5958" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6375:6446" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6475" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6478" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6481" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6484" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6486" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6487" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6489" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6492" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6495" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6498" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6503" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6506" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6510" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6511" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6529" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6531" ph="..." />
+                <marker date="1581905610348" expanded="true" signature="6473:6532" ph="..." />
               </folding>
             </state>
           </provider>
@@ -172,8 +172,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="196" column="27" lean-forward="true" selection-start-line="196" selection-start-column="27" selection-end-line="196" selection-end-column="27" />
+            <state relative-caret-position="-2434">
+              <caret line="37" column="8" lean-forward="true" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -206,9 +206,9 @@
         <option value="$PROJECT_DIR$/temp.py" />
         <option value="$PROJECT_DIR$/config.ini" />
         <option value="$PROJECT_DIR$/scraper.py" />
-        <option value="$PROJECT_DIR$/crawler/frontier.py" />
         <option value="$PROJECT_DIR$/crawler/worker.py" />
         <option value="$PROJECT_DIR$/crawler/__init__.py" />
+        <option value="$PROJECT_DIR$/crawler/frontier.py" />
       </list>
     </option>
   </component>
@@ -516,6 +516,27 @@
     <entry file="file://$PROJECT_DIR$/utils/response.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/scraper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2434">
+          <caret line="37" column="8" lean-forward="true" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawler/worker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="37" column="69" selection-start-line="37" selection-start-column="69" selection-end-line="37" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <marker date="1581905610370" expanded="true" signature="2995:3136" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/launch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -526,64 +547,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper.py">
+    <entry file="file://$PROJECT_DIR$/crawler/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="196" column="27" lean-forward="true" selection-start-line="196" selection-start-column="27" selection-end-line="196" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crawler/worker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="36" column="119" selection-start-line="36" selection-start-column="119" selection-end-line="36" selection-end-column="119" />
+        <state relative-caret-position="408">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-            <marker date="1581904055855" expanded="true" signature="2925:3066" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crawler/frontier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="151" column="34" lean-forward="true" selection-start-line="151" selection-start-column="34" selection-end-line="151" selection-end-column="34" />
+        <state relative-caret-position="555">
+          <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1581903637296" expanded="true" signature="1886:1895" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="3212:3221" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="5859:5925" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6107:6153" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6182" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6185" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6188" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6191" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6193" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6194" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6196" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6199" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6202" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6205" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6210" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6213" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6217" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6218" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6236" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6238" ph="..." />
-            <marker date="1581903637296" expanded="true" signature="6180:6239" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crawler/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <marker date="1581905610348" expanded="true" signature="1919:1928" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="3245:3254" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="5892:5958" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6375:6446" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6475" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6478" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6481" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6484" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6486" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6487" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6489" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6492" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6495" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6498" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6503" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6506" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6510" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6511" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6529" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6531" ph="..." />
+            <marker date="1581905610348" expanded="true" signature="6473:6532" ph="..." />
           </folding>
         </state>
       </provider>

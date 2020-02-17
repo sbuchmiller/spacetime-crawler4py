@@ -31,3 +31,4 @@ class Crawler(object):
             worker.join()
         self.frontier.print_subdomains()
         self.frontier.print_counter()
+        self.frontier.print_max_url()
