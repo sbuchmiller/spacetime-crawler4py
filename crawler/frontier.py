@@ -19,6 +19,7 @@ class Frontier(object):
         self.open_domains = set() #keeps track of domains with values in them that aren't being used by a thread
         self.taken_domains = set() #keeps track of domains being used by a thread
         self.simhashes = simhash.SimhashIndex([])
+        self.subdomains = defaultdict(int)
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
             self.logger.info(
@@ -88,21 +89,6 @@ class Frontier(object):
     def add_to_tbd(self,url):
         parsed = urlparse(url)
         location = parsed.netloc.lower()
-        # if (".ics.uci.edu" in location): #for this project I hardcoded the "domains" however if this was a real crawler I would
-        #     self.to_be_downloaded["ics"].add(url)           #use the domain from the parser to make this expandable to more domains
-        #     key = "ics"                                     #for safety we only use these 5 since they are the ones in the project spec
-        # elif (".cs.uci.edu" in location):
-        #     self.to_be_downloaded["cs"].add(url)
-        #     key = "cs"
-        # elif (".informatics.uci.edu" in location):
-        #     self.to_be_downloaded["informatics"].add(url)
-        #     key = "informatics"
-        # elif (".stat.uci.edu" in  location):
-        #     self.to_be_downloaded["stat"].add(url)
-        #     key = "stat"
-        # elif (".today.uci.edu/department/information_computer_sciences" in  location):
-        #     self.to_be_downloaded["today"].add(url)
-        #     key = "today"
         if (re.match(r".*\.ics.uci.edu.*", location)): #for this project I hardcoded the "domains" however if this was a real crawler I would
             self.to_be_downloaded["ics"].add(url)           #use the domain from the parser to make this expandable to more domains
             key = "ics"                                     #for safety we only use these 5 since they are the ones in the project spec
@@ -121,8 +107,10 @@ class Frontier(object):
         else:
             self.to_be_downloaded["other_valid"].add(url) #not entirely neccesary for this project but it's here just in case
             key = "other_valid"
+        self.subdomains[location] += 1
         if key not in self.taken_domains:
             self.open_domains.add(key) #adds domain to the open domains if it is the first link found in that domain.
+
 
     def stop_crawl(self):       #worker threads ask frontier if they should stop or just idle if they are free
         if len(self.taken_domains) == 0:
@@ -145,9 +133,14 @@ class Frontier(object):
         if domain in self.taken_domains:
             self.taken_domains.remove(domain)
 
-    def check_simhash(self,simh):
+    def check_simhash(self,simh): #returns whether simh is a near dupe to any stored hashes
         return len(self.simhashes.get_near_dups(simh)) == 0
 
-    def add_simhash(self, link,simhash):
+    def add_simhash(self, link,simhash): #adds a simhash to frontier simhashes, neccesary for multithread
         self.simhashes.add(link,simhash)
+
+    def print_subdomains(self): #prints the dictionary of subdomains in alphabetical order
+        print("\n\nPRINTING SUBDOMAINS:")
+        for url, count in sorted(self.subdomains.items(),key=lambda y: y[0]):
+            print(url,count)
 

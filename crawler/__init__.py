@@ -28,3 +28,4 @@ class Crawler(object):
     def join(self):
         for worker in self.workers:
             worker.join()
+        self.frontier.print_subdomains()
