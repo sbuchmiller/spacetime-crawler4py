@@ -8,7 +8,7 @@ from queue import Queue, Empty
 from utils import get_logger, get_urlhash, normalize
 from scraper import Scrape
 import queue
-from collections import defaultdict
+from collections import defaultdict, Counter
 import simhash
 class Frontier(object):
     def __init__(self, config, restart):
@@ -20,6 +20,7 @@ class Frontier(object):
         self.taken_domains = set() #keeps track of domains being used by a thread
         self.simhashes = simhash.SimhashIndex([])
         self.subdomains = defaultdict(int)
+        self.url_word_count = Counter()
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
             self.logger.info(
@@ -139,8 +140,14 @@ class Frontier(object):
     def add_simhash(self, link,simhash): #adds a simhash to frontier simhashes, neccesary for multithread
         self.simhashes.add(link,simhash)
 
+    def add_to_counter(self,url_word):
+        self.url_word_count += url_word
+
     def print_subdomains(self): #prints the dictionary of subdomains in alphabetical order
         print("\n\nPRINTING SUBDOMAINS:")
         for url, count in sorted(self.subdomains.items(),key=lambda y: y[0]):
             print(url,count)
+
+    def print_counter(self):
+        print(self.url_word_count)
 

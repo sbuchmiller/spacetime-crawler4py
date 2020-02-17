@@ -8,7 +8,7 @@ import time
 
 
 class Worker(Thread):
-    def __init__(self, worker_id, config, frontier, id_lock, add_lock, url_lock, sim_lock):
+    def __init__(self, worker_id, config, frontier, id_lock, add_lock, url_lock, sim_lock, print_results_lock):
         self.logger = get_logger(f"Worker-{worker_id}", "Worker")
         self.config = config
         self.frontier = frontier
@@ -17,9 +17,11 @@ class Worker(Thread):
         self.add_lock = add_lock
         self.get_url_lock = url_lock
         self.sim_lock = sim_lock
+        self.print_results_lock = print_results_lock
         self.get_id_lock.acquire()
         self.domain = self.frontier.get_domain()
         self.get_id_lock.release()
+        self.url_word_count = Counter()
         super().__init__(daemon=True)
         
     def run(self):
@@ -30,7 +32,10 @@ class Worker(Thread):
             if not tbd_url:
                 if self.frontier.stop_crawl():
                     self.logger.info("Frontier is empty. Stopping Crawler.")
-                    #Print the final results here
+                    self.url_word_count += self.s.getWordCounter()   #gets the info for total words from scraper
+                    self.print_results_lock.acquire()
+                    self.frontier.add_to_counter(self.url_word_count) #merges all the word counts into frontier counter
+                    self.print_results_lock.release()
                     break
                 if self.frontier.has_free_domain():
                     self.get_id_lock.acquire()
