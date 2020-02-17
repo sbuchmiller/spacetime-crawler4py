@@ -18,10 +18,12 @@ class Frontier(object):
         self.s = Scrape(config)
         self.open_domains = set() #keeps track of domains with values in them that aren't being used by a thread
         self.taken_domains = set() #keeps track of domains being used by a thread
-        self.simhashes = simhash.SimhashIndex([])
-        self.subdomains = defaultdict(int)
-        self.url_word_count = Counter()
-        self.max_url = (" ", -1)
+        self.simhashes = simhash.SimhashIndex([]) #stores simhashes of previous URLs
+
+        self.subdomains = defaultdict(int) #keeps track of unique subdomains
+        self.url_word_count = Counter() #keeps track of the words found in all URL's
+        self.max_url = (" ", -1) #keeps track of the biggest URL by word count
+
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
             self.logger.info(
@@ -88,7 +90,7 @@ class Frontier(object):
         self.save[urlhash] = (url, True)
         self.save.sync()
 
-    def add_to_tbd(self,url):
+    def add_to_tbd(self,url): #takes a url from one worker thread and adds it to the URl dictionary by domain.
         parsed = urlparse(url)
         location = parsed.netloc.lower()
         if (re.match(r".*\.ics.uci.edu.*", location)): #for this project I hardcoded the "domains" however if this was a real crawler I would
