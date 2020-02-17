@@ -3,7 +3,7 @@ from urllib.parse import urlparse
 import utils.response
 from bs4 import BeautifulSoup
 from urllib.parse import urldefrag
-from simhash import Simhash, SimhashIndex
+from simhash import Simhash, SimhashIndex #simhash code retrieved from pip, found at https://github.com/leonsim/simhash
 import requests
 from utils.response import Response
 import cbor
