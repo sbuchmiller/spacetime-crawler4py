@@ -12,11 +12,11 @@ from collections import defaultdict
 from collections import Counter
 from string import punctuation
 
-import urllib.request
-from urllib.error import HTTPError, URLError
-import socket
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
+#import urllib.request
+#from urllib.error import HTTPError, URLError
+#import socket
+#import ssl
+#ssl._create_default_https_context = ssl._create_unverified_context
 
 class Scrape():
     def __init__(self,config, worker = None):
