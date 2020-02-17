@@ -27,7 +27,7 @@ class Scrape():
         self.simhashes = SimhashIndex([])
         self.link = 1
         self.worker = worker
-        self.words = 0
+        self.maxWords = tuple()
         self.wordCounter = Counter() 
         self.stopWords = ["a", "about" ,"above", "after", "again","against","all","am","an","and","any","are","are", "aren't","as","at","be","because","been","before","being","below","between","both","but","by"
                         ,"can't", "cannot","could","couldn't","did","didn't","do","does","doesn't","doing","don't","down","during","each","few","for","from","further"
@@ -61,7 +61,7 @@ class Scrape():
                     output += '{} '.format(t)
             
             #Parses the page for amount of words
-            self.wordParser(output)
+            self.wordParser(output,url)
             #Sim hashes 
             simh = Simhash(output)
 
@@ -189,15 +189,18 @@ class Scrape():
             return user_perm["*"]
     
     #parses The words from the pages to get the data for the final report.
-    def wordParser(self, text:str):
+    def wordParser(self, text:str, url):
+        words = 0
         for x in text.split():
             x = x.rstrip(punctuation).lower()
             if(x not in self.stopWords):
                 Counter[x] += 1
-            self.words += 1
+            words += 1
+        if (words > self.maxWords):
+            self.maxWords = tuple(url, words)
 
     def getWords(self):
-        return self.words
+        return self.maxWords
     
     def getWordCounter(self):
         return self.wordCounter
