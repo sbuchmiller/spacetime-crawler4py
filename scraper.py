@@ -11,6 +11,7 @@ import time
 from collections import defaultdict 
 from collections import Counter
 from string import punctuation
+import re
 
 #import urllib.request
 #from urllib.error import HTTPError, URLError
@@ -27,15 +28,22 @@ class Scrape():
         self.simhashes = SimhashIndex([])
         self.link = 1
         self.worker = worker
-        self.maxWords = ("",0)
-        self.wordCounter = Counter() 
-        self.stopWords = ["a", "about" ,"above", "after", "again","against","all","am","an","and","any","are","are", "aren't","as","at","be","because","been","before","being","below","between","both","but","by"
-                        ,"can't", "cannot","could","couldn't","did","didn't","do","does","doesn't","doing","don't","down","during","each","few","for","from","further"
-                        ,"had","hadn't", "has","hasn't","has","hasn't","have","haven't","having","he","he'd","he'll","he's","her","herself","him","himself","his","how","how's","i","i'd","i'll","i'm","i've","if","in","into","isn't","it","it's","its","itself"
-                        ,"let's","me","more","most","mustn't","my","myself","no","nor","not","of","off","on","once","only","once","or","other","ought","our","ours"
-                        ,"ourselves","out","over","own","same","shan't","she","she'd","she'll","she's","shouldn't","should","so","some","such","than","that","that's","the","their","theirs","them","themselves","then","there","there's","these","they","they'd"
-                        ,"they'll","they're","they've","this","those","through","to","too","under","until","under","until","up","very","was","wasn't","we","we'd","we'll","we're","we've","were","where","weren't","what","what's","when","when's","which","while"
-                        ,"who","who's","whom","why","why's","with","won't","would","wouldn't","you","you'd","you'll","you're","yourself","your","you've","yourselves"]
+        self.maxWords = ("",0) # maxWords[0] is the URL, maxWords[1] is the number of words in it
+        self.wordCounter = Counter()  # a dictionary that keeps track of words the # of words 
+        self.stopWords = ['1', 'a', 'about', 'above', 'after', 'again', 'against', 'all', 'also', 'am', 'an', 'and', 'any', 'are', 'are', 
+                        "aren't", 'as', 'at','b', 'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both', 'but', 'by', 'can', 
+                        'can', "can't", 'cannot', 'could', "couldn't", 'd', 'did', "didn't", 'do', 'does', "doesn't", 'doing', "don't", 
+                        'down', 'during', 'each', 'few', 'for', 'from', 'further', 'had', "hadn't", 'has', 'has', "hasn't", "hasn't", 
+                        'have', "haven't", 'having', 'he', "he'd", "he'll", "he's", 'her', 'herself', 'him', 'himself', 'his', 'how', 
+                        "how's", 'i', "i'd", "i'll", "i'm", "i've", 'if', 'in', 'into', 'is', "isn't", 'it', "it's", 'its', 'itself', 
+                        "let's", 'm', 'may', 'me', 'more', 'most', "mustn't", 'my', 'myself', 'next', 'no', 'nor', 'not', 'of', 'off', 'on', 
+                        'once', 'once', 'one', 'only', 'or', 'other', 'ought', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 's', 
+                        'same', 'say', 'says', "shan't", 'she', "she'd", "she'll", "she's", 'should', "shouldn't", 'so', 'some', 'such', 
+                        't', 'than', 'that', "that's", 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'there', "there's", 'these', 
+                        'they', "they'd", "they'll", "they're", "they've", 'this', 'those', 'through', 'to', 'too', 'under', 'under', 'until', 
+                        'until', 'up', 've', 'very', 'was', "wasn't", 'we', "we'd", "we'll", "we're", "we've", 'were', "weren't", 'what', 
+                        "what's", 'when', "when's", 'where', 'which', 'while', 'who', "who's", 'whom', 'why', "why's", 'will', 'with', "won't", 
+                        'would', "wouldn't", 'x', 'y', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yourself', 'yourselves']
     def scraper(self,url:str, resp: utils.response.Response) -> list:
         links = self.extract_next_links(url,resp)
         return links
@@ -43,7 +51,8 @@ class Scrape():
 
     def extract_next_links(self,url, resp) -> list:
         
-        blackList = ['[document]', 'noscript', 'header', 'html', 'meta', 'head', 'input', 'script', 'style', 'b', 'button']
+        blackList = ['[document]', 'noscript', 'header', 'html', 'meta', 'head', 'input', 'script', 'style', 'b', 'button', '.comment-meta',
+        '.comment-content', '.comment-metadata', '.comment-body', '.comment-author', '#comment','.comment-area', 'secondary', 'main']
 
         links = set() # make it a set so it checks duplicates after removing the fragment
         if (200 <= resp.status <= 599)  and resp.status != 204:
@@ -60,8 +69,7 @@ class Scrape():
                 if t.parent.name not in blackList:
                     output += '{} '.format(t)
             
-            #Parses the page for amount of words
-            self.wordParser(output,url)
+           
             #Sim hashes 
             simh = Simhash(output)
 
@@ -70,9 +78,14 @@ class Scrape():
             else:
                 for link in soup.findAll('a'):
                    if self.is_valid(link.get('href')):
+
+                        #Parses the page for amount of words
+                        output_list = self.remove_stopwords(self.wordParser(output))
+                        self.wordParser2(output_list,url)
+
                         # remove the fragment here
-                       unfragmented = urldefrag(link.get('href'))
-                       links.add(unfragmented.url)
+                        unfragmented = urldefrag(link.get('href'))
+                        links.add(unfragmented.url)
             if self.worker != None:
                 self.worker.add_simhash(self.link,simh)
                 self.link += 1
@@ -116,8 +129,6 @@ class Scrape():
                 + r"|today\.uci\.edu\/department\/information_computer_sciences\/?.*$"
                 ,parsed.netloc.lower() )):
 
-            	
-
                 
                 if (len(parsed.geturl()) <= 200):  # any links bigger than 200 will be discarded
                     '''
@@ -126,7 +137,7 @@ class Scrape():
                             # set the timeout value to 10 seconds
                             response = urllib.request.urlopen(url, timeout=10)
                         except (HTTPError, URLError) as error:
-                            print('{} is not retrieved because it\'s taking too long'.format(url))
+                            print('{} is not retrieved because it's taking too long'.format(url))
                             return False
                     '''
 
@@ -188,17 +199,48 @@ class Scrape():
         else:
             return user_perm["*"]
     
-    #parses The words from the pages to get the data for the final report.
-    def wordParser(self, text:str, url):
+    #parses The words from the pages to 
+    def wordParser(self, text:str):
+        try:
+            array = text.split()
+
+            array1 = []
+            for word in array:         
+                if re.match("\w+\W+\w+", word):
+                    array1.extend(re.split("\W+", word))
+                elif re.match("^\W+$", word):
+                    pass
+                elif re.match("^\w+\W+$", word):
+                    array1.append(re.search("^(\w+)(\W+)$", word).group(1))
+                elif re.match("\w*[^a-zA-Z0-9]+\w*[^a-zA-Z0-9]*", word):
+                    array1.extend(re.split("[^a-zA-Z0-9]+", word))
+                else:
+                    array1.append(word)
+
+            for i in range(len(array1)):
+                if array1[i].lower() != array1[i]:
+                    array1[i] = array1[i].lower()
+
+            return " ".join(array1).split()
+        except:
+            pass
+
+    # remove all the stop words
+    def remove_stopwords(self, l:list) -> list: 
+            arr2 = []
+            for word in l:
+                if word not in self.stopWords:
+                    arr2.append(word)
+            return arr2
+
+    # get the data from the list of words for the final report.
+    def wordParser2(self,l:list,url):
         words = 0
-        for x in text.split():
-            x = x.rstrip(punctuation).lower()
-            if(x not in self.stopWords):
-                self.wordCounter[x] += 1
+        for x in l :
+            self.wordCounter[x] += 1
             words += 1
         if (words > self.maxWords[1]):
             self.maxWords = (url, words)
-
 
     def getWords(self):
         return self.maxWords

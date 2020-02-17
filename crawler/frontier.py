@@ -24,6 +24,10 @@ class Frontier(object):
         self.url_word_count = Counter() #keeps track of the words found in all URL's
         self.max_url = (" ", -1) #keeps track of the biggest URL by word count
 
+        self.file = "output.txt" #the file that we want to write the results to
+        self.fh = open(self.file,'w') 
+        self.write_to_file = True # change it to False if don't want to write the results to output.txt
+
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
             self.logger.info(
@@ -153,13 +157,29 @@ class Frontier(object):
     def print_max_url(self):
         print("\n\nMAX_URL_LENGTH:")
         print(self.max_url)
+        if self.write_to_file:
+            self.fh.write("\n\nMAX_URL_LENGTH:")
+            self.fh.write(str(self.max_url))
+            self.fh.write('\n')
+            self.fh.close()
+            
 
     def print_subdomains(self): #prints the dictionary of subdomains in alphabetical order
+        if self.write_to_file:
+            self.fh.write("PRINTING SUBDOMAINS:")
         print("\n\nPRINTING SUBDOMAINS:")
         for url, count in sorted(self.subdomains.items(),key=lambda y: y[0]):
-            print(url,count)
+            if self.write_to_file:
+                print(url,count)
+                self.fh.write(url + " " + str(count) + '\n')
+            else:
+                print(url,count)
+           
 
     def print_counter(self):
         print("\n\nMOST FREQUENT WORD COUNTER:")
         print(self.url_word_count.most_common(60))
+        if self.write_to_file:
+            self.fh.write("\n\nMOST FREQUENT WORD COUNTER:")
+            self.fh.write(str(self.url_word_count.most_common(60)))
 
