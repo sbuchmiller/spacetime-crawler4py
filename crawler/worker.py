@@ -3,6 +3,7 @@ from threading import Thread
 from utils.download import download
 from utils import get_logger
 from scraper import Scrape
+from collections import Counter
 import time
 
 
@@ -29,6 +30,7 @@ class Worker(Thread):
             if not tbd_url:
                 if self.frontier.stop_crawl():
                     self.logger.info("Frontier is empty. Stopping Crawler.")
+                    #Print the final results here
                     break
                 if self.frontier.has_free_domain():
                     self.get_id_lock.acquire()
@@ -52,6 +54,9 @@ class Worker(Thread):
                     self.frontier.add_url(scraped_url)
                 self.frontier.mark_url_complete(tbd_url)
                 self.add_lock.release()
+                #Collect and add variables here.
+                
+                
             time.sleep(self.config.time_delay)
 
     def check_simhash(self,simhash):
