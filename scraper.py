@@ -197,7 +197,7 @@ class Scrape():
                 self.wordCounter[x] += 1
             words += 1
         if (words > self.maxWords[1]):
-            self.maxWords = tuple(url, words)
+            self.maxWords = (url, words)
 
     def getWords(self):
         return self.maxWords
