@@ -1,9 +1,18 @@
- 6707 UNIQUE PAGES FOUND
+Scott Buchmiller 79557971
+Jason Zhu        94612036
+Ting Hsu         73401826
 
- MAX_URL_LENGTH: (longest page in terms of number of words)
+------------------------------------------------------------
+Report:
+
+1. How many unique pages did you find? 
+6707 UNIQUE PAGES FOUND
+
+2. longest page in terms of number of words?
+MAX_URL_LENGTH:
 ('http://www.ics.uci.edu/~kay/wordlist.txt', 385018)
 
-
+3. What are the 50 most common words in the entire set of pages? 
 50 MOST FREQUENT WORDS: (word, frequency)
 [('research', 1394367), ('student', 885998), ('computer', 867141), ('2019', 860735), ('2018', 858610), 
 ('2017', 836029), ('software', 792119), ('2016', 777758), ('informatics', 750275), ('2015', 749454), 
@@ -16,7 +25,7 @@
 ('october', 367204), ('support', 363160), ('people', 359525), ('past', 356980), ('february', 356095), 
 ('march', 354102), ('april', 350423), ('course', 346360), ('design', 332782), ('policies', 329790)]
 
-
+4. How many subdomains did you find in the ics.uci.edu domain?
 PRINTING SUBDOMAINS:
 TOTAL NUMBERS OF SUBDOMAINS = 117
 acoi.ics.uci.edu, 1
