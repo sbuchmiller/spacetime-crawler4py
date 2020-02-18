@@ -166,20 +166,22 @@ class Frontier(object):
 
     def print_subdomains(self): #prints the dictionary of subdomains in alphabetical order
         if self.write_to_file:
-            self.fh.write("PRINTING SUBDOMAINS:")
-        print("\n\nPRINTING SUBDOMAINS:")
+            self.fh.write("PRINTING SUBDOMAINS:\n")
+            self.fh.write("TOTAL NUMBERS OF SUBDOMAINS = " + str(len(self.subdomains)) + "\n")
+        print("\n\nPRINTING SUBDOMAINS:\n")
+        print("TOTAL NUMBERS OF SUBDOMAINS = " + str(len(self.subdomains)) + "\n")
         for url, count in sorted(self.subdomains.items(),key=lambda y: y[0]):
             if self.write_to_file:
                 print(url,count)
-                self.fh.write(url + " " + str(count) + '\n')
+                self.fh.write(url + ", " + str(count) + '\n')
             else:
                 print(url,count)
            
 
     def print_counter(self):
-        print("\n\nMOST FREQUENT WORD COUNTER:")
+        print("\n\n 50 MOST FREQUENT WORD COUNTER:\n")
         print(self.url_word_count.most_common(60))
         if self.write_to_file:
-            self.fh.write("\n\nMOST FREQUENT WORD COUNTER:")
+            self.fh.write("\n\nMOST FREQUENT WORD COUNTER:\n")
             self.fh.write(str(self.url_word_count.most_common(60)))
 
