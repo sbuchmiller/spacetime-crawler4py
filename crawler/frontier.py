@@ -24,9 +24,9 @@ class Frontier(object):
         self.url_word_count = Counter() #keeps track of the words found in all URL's
         self.max_url = (" ", -1) #keeps track of the biggest URL by word count
 
-        self.file = "output.txt" #the file that we want to write the results to
+        self.file = "report.txt" #the file that we want to write the results to
         self.fh = open(self.file,'w') 
-        self.write_to_file = True # change it to False if don't want to write the results to output.txt
+        self.write_to_file = False # change it to False if don't want to write the results to output.txt
 
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
