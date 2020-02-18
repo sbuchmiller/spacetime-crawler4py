@@ -179,9 +179,9 @@ class Frontier(object):
            
 
     def print_counter(self):
-        print("\n\n 50 MOST FREQUENT WORD COUNTER:\n")
+        print("\n\n 50 MOST FREQUENT WORD WORDS:\n")
         print(self.url_word_count.most_common(60))
         if self.write_to_file:
-            self.fh.write("\n\nMOST FREQUENT WORD COUNTER:\n")
+            self.fh.write("\n\nMOST FREQUENT WORDS:\n")
             self.fh.write(str(self.url_word_count.most_common(60)))
 

@@ -1,6 +1,24 @@
+ 6707 UNIQUE PAGES FOUND
+
+ MAX_URL_LENGTH: (longest page in terms of number of words)
+('http://www.ics.uci.edu/~kay/wordlist.txt', 385018)
+
+
+50 MOST FREQUENT WORDS: (word, frequency)
+[('research', 1394367), ('student', 885998), ('computer', 867141), ('2019', 860735), ('2018', 858610), 
+('2017', 836029), ('software', 792119), ('2016', 777758), ('informatics', 750275), ('2015', 749454), 
+('engineering', 697027), ('undergraduate', 631844), ('information', 607035), ('entry', 596756), ('content', 584429), 
+('profiles', 571511), ('site', 567571), ('science', 550959), ('ph', 548773), ('graduate', 548592), 
+('department', 532633), ('students', 511708), ('post', 452324), ('courses', 444684), ('january', 438150), 
+('books', 437039), ('comment', 429560), ('projects', 425141), ('ramesh', 413284), ('september', 411653),
+('december', 409683), ('november', 407209), ('2014', 404597), ('june', 403691), ('news', 396015), 
+('read', 394254), ('july', 391861), ('uci', 386878), ('august', 386212), ('menu', 382282), 
+('october', 367204), ('support', 363160), ('people', 359525), ('past', 356980), ('february', 356095), 
+('march', 354102), ('april', 350423), ('course', 346360), ('design', 332782), ('policies', 329790)]
+
+
 PRINTING SUBDOMAINS:
 TOTAL NUMBERS OF SUBDOMAINS = 117
-, 1
 acoi.ics.uci.edu, 1
 aiclub.ics.uci.edu, 1
 alumni.ics.uci.edu, 5
@@ -119,7 +137,5 @@ xtune.ics.uci.edu, 6
 yarra.ics.uci.edu, 1
 
 
-MOST FREQUENT WORD COUNTER:
-[('research', 1394367), ('student', 885998), ('computer', 867141), ('2019', 860735), ('2018', 858610), ('2017', 836029), ('software', 792119), ('2016', 777758), ('informatics', 750275), ('2015', 749454), ('engineering', 697027), ('undergraduate', 631844), ('information', 607035), ('entry', 596756), ('content', 584429), ('profiles', 571511), ('site', 567571), ('science', 550959), ('ph', 548773), ('graduate', 548592), ('department', 532633), ('students', 511708), ('post', 452324), ('courses', 444684), ('january', 438150), ('books', 437039), ('comment', 429560), ('projects', 425141), ('ramesh', 413284), ('september', 411653), ('december', 409683), ('november', 407209), ('2014', 404597), ('june', 403691), ('news', 396015), ('read', 394254), ('july', 391861), ('uci', 386878), ('august', 386212), ('menu', 382282), ('october', 367204), ('support', 363160), ('people', 359525), ('past', 356980), ('february', 356095), ('march', 354102), ('april', 350423), ('course', 346360), ('design', 332782), ('policies', 329790), ('process', 329651), ('application', 328503), ('degrees', 322582), ('upcoming', 320606), ('alumni', 317616), ('groups', 314590), ('comments', 314452), ('master', 308848), ('schedule', 298634), ('social', 296502)]
 
-MAX_URL_LENGTH:('https://sli.ics.uci.edu/AIStats/Postings', 22754)
+
